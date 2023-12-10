@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>Vai</button>
+    
+    <script>
+        /*const btn = document.querySelector ('button');
+        btn.addEventListener('click', () => {
+            alert('you clicked me!');
+
+            let pElem = document.createElement('p');
+            pElem.textContent = 'this is a newly-added paragraph.';
+            document.body.appendChild(pElem);
+        })*/
+
+        function loadAsset(url, type , callback){
+            let xhr = new XMLHttpRequest();
+            xhr.open('get', url);
+            xhr.responseType = type;
+
+            xhr.onload = function() {
+                callback(xhr.response);
+            };
+
+            xhr.send();
+        }
+
+        function displayImage(blob) {
+            let objectURL = URL.createObjectURL(blob);
+
+            let image = document.createElement('img');
+            image.src = objectURL;
+            document.body.appendChild(image);
+        }
+
+        loadAsset('https://ak.picdn.net/shutterstock/videos/11773709/thumb/10.jpg', 'blob', displayImage);
+    </script>
+</body>
+</html>
